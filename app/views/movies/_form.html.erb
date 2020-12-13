@@ -1,0 +1,29 @@
+<%= simple_form_for @movie do |f| %>
+
+<p>
+  <%= f.label :title %><br>
+  <%= f.text_field :title %>
+</p>
+
+<p>
+  <%= f.label :length %><br>
+  <%= f.text_field :length %>
+</p>
+
+<p>
+  <%= f.label :director %><br>
+  <%= f.select :director_id, Director.all.map{|t| [ t.name,t.id]}.insert(0,["Select one",""]) %>
+</p>
+
+<p>
+  <h3>Or create a new Director:</h3>
+  <%= f.fields_for :director, Director.new do |director_attributes|%>
+      <%= director_attributes.label :name, "Director Name:" %>
+      <%= director_attributes.text_field :name %>
+  <% end %>
+</p>
+
+<p>
+  <%= f.submit %>
+</p>
+<% end %>
