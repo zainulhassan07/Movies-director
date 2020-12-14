@@ -1,7 +1,7 @@
 class MoviesController < ApplicationController
 
   def index
-    @movies = Movie.all
+    @movies = current_user.movies
   end
 
   def show
@@ -42,7 +42,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title, :length, director_attributes: [:id, :name])
+    params.require(:movie).permit(:title, :length, :director_id, :user_id )
   end
 end
   

@@ -15,12 +15,18 @@
   <%= f.select :director_id, Director.all.map{|t| [ t.name,t.id]}.insert(0,["Select one",""]) %>
 </p>
 
+
+
+
 <p>
-  <h3>Or create a new Director:</h3>
-  <%= f.fields_for :director, Director.new do |director_attributes|%>
-      <%= director_attributes.label :name, "Director Name:" %>
-      <%= director_attributes.text_field :name %>
-  <% end %>
+  <%= f.hidden_field :user_id , value: current_user.id %>
+</p>
+
+<p>
+  <%#= f.fields_for :director, Director.new do |director_attributes|%>
+      <%#= director_attributes.label :name, "Director Name:" %>
+      <%#= director_attributes.text_field :name %>
+  <%# end %>
 </p>
 
 <p>
