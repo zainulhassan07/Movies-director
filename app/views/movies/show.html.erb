@@ -13,6 +13,31 @@
 <%= link_to 'Edit', edit_movie_path(@movie) %> ||
 <%= link_to 'Back', movies_path %> ||
 <%= form_tag("/movies/#{params[:id]}/add_to_watchlist", :method => "post") do%>
-<%= submit_tag('Add to watchlist') %>
+  <%= submit_tag('Add to watchlist') %>
+<% end %>
+
 </p>
+
+<h2>Comments</h2>
+<% @movie.comments.each do |comment| %>
+
+  <p>
+    <strong>Comment:</strong>
+    <%= comment.body %>
+  </p>
+<% end %>
+
+<%= simple_form_for @comment do |form| %>
+<p>
+
+  <%= form.label :body %><br>
+  <%= form.text_field :body %>
+</p>
+
+<%= form.hidden_field :movie_id, :value => @movie.id %>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
 <% end %>

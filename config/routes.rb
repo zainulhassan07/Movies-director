@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   post 'movies/:id/add_to_watchlist', to: 'movies#add_to_watchlist'
   get 'watchlists', to: 'movies#watchlists'
   resources :watchlists
+  resources :comments
 end
