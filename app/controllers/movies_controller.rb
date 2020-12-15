@@ -42,12 +42,17 @@ class MoviesController < ApplicationController
     @watchlist = Watchlist.new
     @watchlist.movie_id = @movie.id
     @watchlist.user_id = current_user.id
-
+    @watchlist.title = @movie.title
     if @watchlist.save
-      redirect_to @movie, notice: 'Movie Added to watch list'
+      redirect_to watchlists_path, notice: 'Movie Added to watch list'
     else
       redirect_to @movie, notice: 'Couldnot add Movie to watch list'
     end
+  end
+
+
+  def watchlists
+    @watchlists = current_user.watchlists
   end
 
   private

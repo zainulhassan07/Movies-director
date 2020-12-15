@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   resources :movies
   resources :users
   post 'movies/:id/add_to_watchlist', to: 'movies#add_to_watchlist'
+  get 'watchlists', to: 'movies#watchlists'
+  resources :watchlists
 end

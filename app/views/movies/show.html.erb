@@ -1,3 +1,4 @@
+
 <p>
   <strong>title:</strong>
   <%= @movie.title %>
@@ -8,7 +9,7 @@
   <strong>length:</strong>
   <%= @movie.length %>
 </p>
-
+<%= link_to 'show Watchlist', :watchlists %> ||
 <%= link_to 'Edit', edit_movie_path(@movie) %> ||
 <%= link_to 'Back', movies_path %> ||
 <%= form_tag("/movies/#{params[:id]}/add_to_watchlist", :method => "post") do%>
