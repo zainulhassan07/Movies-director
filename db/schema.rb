@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_075212) do
+ActiveRecord::Schema.define(version: 2020_12_15_061831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 2020_12_14_075212) do
     t.string "length"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "director_id"
+    t.bigint "{:index=>true, :foreign_key=>true}_id"
     t.integer "user_id"
-    t.index ["director_id"], name: "index_movies_on_director_id"
+    t.index ["{:index=>true, :foreign_key=>true}_id"], name: "index_movies_on_{:index=>true, :foreign_key=>true}_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -43,5 +43,11 @@ ActiveRecord::Schema.define(version: 2020_12_14_075212) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "movies", "directors"
+  create_table "watchlists", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "movie_id"
+  end
+
 end

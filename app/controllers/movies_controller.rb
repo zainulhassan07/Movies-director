@@ -1,7 +1,8 @@
 class MoviesController < ApplicationController
+  before_action:find_movie, only: [:add_to_watchlist]
 
   def index
-    @movies = current_user.movies
+    @movies = Movie.all
   end
 
   def show
@@ -10,8 +11,6 @@ class MoviesController < ApplicationController
   
   def new
     @movie = Movie.new
-    @director = @movie.build_director
-    @directors = Director.all
   end
 
   def create
@@ -32,7 +31,6 @@ class MoviesController < ApplicationController
 
   def edit
     @movie = Movie.find(params[:id])
-    @directors =  Director.all
   end
 
   def destroy
@@ -40,9 +38,25 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+  def add_to_watchlist
+    @watchlist = Watchlist.new
+    @watchlist.movie_id = @movie.id
+    @watchlist.user_id = current_user.id
+
+    if @watchlist.save
+      redirect_to @movie, notice: 'Movie Added to watch list'
+    else
+      redirect_to @movie, notice: 'Couldnot add Movie to watch list'
+    end
+  end
+
   private
   def movie_params
-    params.require(:movie).permit(:title, :length, :director_id, :user_id )
+    params.require(:movie).permit(:title, :length, :user_id )
+  end
+
+  def find_movie
+    @movie = Movie.find(params[:id])
   end
 end
   

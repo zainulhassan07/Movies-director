@@ -9,8 +9,8 @@
   <% @directors.each do |director| %>
     <tr>
       <td><%= director.name %></td>
-      <td><%= link_to 'show', director_path(director) %></td>
-      <td><%= link_to 'Edit', edit_director_path(director) %></td>
+      <td><%#= link_to 'show', director_path(director) %></td>
+      <td><%#= link_to 'Edit', edit_director_path(director) %></td>
       <td><%= link_to 'Delete', director_path(director),
              method: :delete,
               data: { confirm: 'Are you sure' } %></td>
