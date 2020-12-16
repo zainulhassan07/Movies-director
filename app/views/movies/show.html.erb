@@ -27,6 +27,12 @@
     <%= comment.body %>
   </p>
 
+    <p>
+    <strong>User Id:</strong>
+     <%= comment.user_id %>
+  </p>
+
+
 <p>
   
   <%= link_to 'Destroy Comment', comment_path(comment, movie_id: @movie.id),
@@ -58,7 +64,11 @@
   <%= form.text_field :body %>
 </p>
 
+
+
 <%= form.hidden_field :movie_id, :value => @movie.id %>
+<%= form.hidden_field :user_id, :value => current_user.id %>
+
 
 <p>
   <%= form.submit %>

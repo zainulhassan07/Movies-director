@@ -51,7 +51,7 @@ class MoviesController < ApplicationController
     if @watchlist.save
       redirect_to watchlists_path, notice: 'Movie Added to watch list'
     else
-      redirect_to @movie, notice: 'Couldnot add Movie to watch list'
+      redirect_to @movie, notice: 'Could not added Movie to watch list'
     end
   end
 
