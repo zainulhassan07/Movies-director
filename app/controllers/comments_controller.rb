@@ -6,9 +6,12 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.save
-    
-    redirect_to movie_path(@movie)
+    if @comment.save
+      flash[:notice] = "Comment succesfully created"
+      redirect_to movie_path(@movie)
+    else
+      flash[:error] = "Comment is not created"
+    end  
   end
 
 
