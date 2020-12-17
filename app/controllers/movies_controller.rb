@@ -8,6 +8,9 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @comment = Comment.new
+    if current_user.watchlists.select { |favor| favor.movie_id == @movie.id }.present?
+      @remove = current_user.watchlists.select { |favor| favor.movie_id == @movie.id }.first.id
+    end
   end
   
   def new
@@ -49,7 +52,7 @@ class MoviesController < ApplicationController
     @watchlist.user_id = current_user.id
     @watchlist.title = @movie.title
     if @watchlist.save
-      redirect_to watchlists_path, notice: 'Movie Added to watch list'
+      redirect_to watchlists_path, notice: 'Movie add to watch list'
     else
       redirect_to @movie, notice: 'Could not added Movie to watch list'
     end
@@ -62,7 +65,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title, :length, :user_id )
+    params.require(:movie).permit(:title, :length, :user_id, :username)
   end
 
   def find_movie
