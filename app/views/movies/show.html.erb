@@ -72,18 +72,13 @@
   <% end %>
   
 <p>
-
   <%= form.label :body %><br>
-  <%= form.text_field :body %>
+  <%= form.text_field :body, :required => 'required' %>
 </p>
-
-
 
 <%= form.hidden_field :movie_id, :value => @movie.id %>
 <%= form.hidden_field :user_id, :value => current_user.id %>
 <%= form.hidden_field :username, :value => current_user.name %>
-
-
 
 <p>
   <%= form.submit %>

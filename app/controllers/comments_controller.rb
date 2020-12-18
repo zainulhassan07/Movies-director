@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
   
 
   def create
-  
     @comment = Comment.new(comment_params)
     if @comment.save
       flash[:notice] = "Comment succesfully created"
@@ -16,7 +15,6 @@ class CommentsController < ApplicationController
   end
 
   
-
   def destroy
     @comment = Comment.find(params[:id]).destroy
     @comment.destroy

@@ -8,8 +8,8 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @comment = Comment.new
-    if current_user.watchlists.select { |favor| favor.movie_id == @movie.id }.present?
-      @remove = current_user.watchlists.select { |favor| favor.movie_id == @movie.id }.first.id
+    if current_user.watchlists.select { |t| t.movie_id == @movie.id }.present?
+       @remove = current_user.watchlists.select { |t| t.movie_id == @movie.id }.first.id
     end
   end
   
@@ -29,7 +29,6 @@ class MoviesController < ApplicationController
 
   def update
     @movie = Movie.find(params[:id])
-
     if @movie.update(movie_params)
       redirect_to movies_path
     else

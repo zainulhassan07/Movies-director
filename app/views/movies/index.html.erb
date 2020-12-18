@@ -12,7 +12,7 @@
   <% @movies.each do |movie| %>
     <tr>
       <td><%= movie.title %></td>
-      <td>   <%= movie.length %>  </td>
+      <td><%= movie.length %></td>
       <td><%= link_to 'show', movie_path(movie) %></td>
       <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
       <td><%= link_to 'Delete', movie_path(movie),
