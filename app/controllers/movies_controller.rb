@@ -21,7 +21,7 @@ class MoviesController < ApplicationController
     @movie = Movie.new(movie_params)
     if @movie.save
       flash[:notice] = "Your movie succesfully created"
-      redirect_to movies_path
+      redirect_to movie_path(@movie)
     else
       render 'new'
     end
@@ -30,7 +30,7 @@ class MoviesController < ApplicationController
   def update
     @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
-      redirect_to movies_path
+      redirect_to movie_path(@movie)
     else
       render 'edit'  
     end
@@ -64,7 +64,7 @@ class MoviesController < ApplicationController
 
   private
   def movie_params
-    params.require(:movie).permit(:title, :length, :user_id, :username)
+    params.require(:movie).permit(:title, :length, :user_id, :username, :image)
   end
 
   def find_movie

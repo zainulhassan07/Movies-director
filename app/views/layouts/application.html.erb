@@ -31,6 +31,8 @@
           <div style="padding-right: 10px;">
           </div>
           <%= link_to "Log out", destroy_user_session_path, method: :delete, class:"btn btn-light btn-outline-danger" ,  style: "color: red;"%>
+          <%= link_to "Edit user Profile", edit_user_registration_path	, class:"btn btn-light btn-outline-danger" ,  style: "color: red;"%>
+
         <%else%>
           <div style="padding-right: 10px;">
           </div>
@@ -41,6 +43,11 @@
         <%end%>
       </form>
     </nav>
+    <div>
+    <% if user_signed_in? %>
+      <%= image_tag current_user.avatar.url(:thumb) %>
+    <% end %>
+    </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     

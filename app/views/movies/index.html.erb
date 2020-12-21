@@ -6,6 +6,7 @@
   <tr>
     <th>Movie Name</th>
     <th>Movie length:</th>
+    <th>Movie Picture</th>
     <th></th>
   </tr>
 
@@ -13,6 +14,7 @@
     <tr>
       <td><%= movie.title %></td>
       <td><%= movie.length %></td>
+      <td><%= image_tag movie.image.url(:medium) %></td>
       <td><%= link_to 'show', movie_path(movie) %></td>
       <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
       <td><%= link_to 'Delete', movie_path(movie),

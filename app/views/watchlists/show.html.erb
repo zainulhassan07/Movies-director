@@ -2,12 +2,14 @@ h1>Current user watchlists </h1>
 <table>
   <tr>
     <th>Movie Name</th>
+    <th>Movie Picture</th>
     <th></th>
   </tr>
 
   <% @watchlist.each do |watchlist| %>
     <tr>
       <td><%= watchlist.title %></td>
+      <td><%= image_tag watchlist.image.url(:medium) %></td>
       <td><%= link_to 'Delete', watchlist_path(watchlist),
              method: :delete,
               data: { confirm: 'Are you sure' } %></td>
